@@ -5,5 +5,5 @@ To get started:
 ```bash
 cd
 git clone git://github.com/jcrussell/dotfiles.git .dotfiles
-.dotfile/install.sh
+.dotfiles/install.sh
 ```
