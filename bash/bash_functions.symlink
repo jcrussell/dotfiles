@@ -1,0 +1,18 @@
+# grep all java files (recursively)
+function jgrep()
+{
+  find . -type f -name "*\.java" -print0 | xargs -0 grep --color -n "$@"
+}
+
+# grep all c/cc/cpp/h files (recursively)
+function cgrep()
+{
+  find . -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 grep --color -n "$@"
+}
+
+# grep all files with a specific extension (recursively)
+function ext_grep()
+{
+  ext=$1; shift
+  find . -type f -name "*\.$ext" -print0 | xargs -0 grep --color -n "$@"
+}

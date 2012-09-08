@@ -1,0 +1,47 @@
+set nocompatible
+
+call pathogen#infect()
+
+set mouse=i
+
+set nowrap
+set autoindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set foldlevel=2
+set expandtab
+
+filetype plugin indent on
+
+set formatoptions=cro
+
+set showmatch
+set nu
+set incsearch
+
+" size in KB
+set maxmempattern=20000
+
+syntax on
+colorscheme desert
+
+set showmode
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.pdf,*.aux,*.bbl,*.bcf,*.blg,*.cls
+
+au BufNewFile,BufRead Makefile setlocal noexpandtab
+au BufNewFile,BufRead *.tex,*.txt setlocal wrap linebreak tw=120 fo=tcqw spell spelllang=en_us
+au BufNewFile,BufRead *.thor setlocal ft=ruby
+au BufNewFile,BufRead *.sbt setlocal ft=scala
+
+" trim whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+nmap <F2> :NERDTreeToggle<CR>
+nnoremap <F9> :!!<CR>
+nnoremap <F10> :set invpaste paste?<CR>
+
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev WQ wq
+cnoreabbrev Wq wq

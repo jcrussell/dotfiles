@@ -1,0 +1,18 @@
+# .xsession
+
+# Startup gnome keyring for ssh keys
+eval `gnome-keyring-daemon`
+export SSH_AUTH_SOCK
+export GNOME_KEYRING_PID
+
+# For applications that rely on gtk
+gnome-settings-daemon &
+
+xscreensaver -no-splash &
+
+# Auto start email and web
+google-chrome &
+evolution &
+
+# Finally, start xmonad
+xmonad
