@@ -2,11 +2,11 @@
 
 dotdir=`dirname $0`
 
-for symlink in `find $dotdir \( -iname "*.symlink" ! -iname ".*" \)`; do
+for symlink in `find $dotdir \( -name "*.symlink" ! -path "*.git*" \)`; do
   echo "Processing $symlink"
   dotfile=.`basename $symlink .symlink`
   create_link=true
-  if [ -e ~/$dotfile ]; then
+  if [ -f ~/$dotfile ]; then
     echo "Error ~/$dotfile already exists"
     echo "What should be done? [B]ackup, [S]kip"
     read answer
@@ -31,7 +31,8 @@ for symlink in `find $dotdir \( -iname "*.symlink" ! -iname ".*" \)`; do
   fi
 
   if $create_link; then
-    echo "Linking ~/$dotfile --> `pwd`$symlink"
-    ln -s -T `pwd`/$symlink ~/$dotfile
+    target=`readlink -f $symlink`
+    echo "Linking ~/$dotfile --> $target"
+    ln -s -T $target ~/$dotfile
   fi
 done
