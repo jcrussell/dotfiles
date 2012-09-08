@@ -5,10 +5,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 
 # Different browser sessions
-alias google-chrome-tor='google-chrome --user-data-dir=~/.config/google-chrome-tor --proxy-server=socks://localhost:9050'
-alias google-chrome-proxy='google-chrome --user-data-dir=~/.config/google-chrome-proxy --proxy-server=socks://localhost:5000'
-alias google-chrome-bank='google-chrome --user-data-dir=~/.config/google-chrome-bank'
-alias google-chrome-video='google-chrome --user-data-dir=~/.config/google-chrome-video'
+alias google-chrome-tor='google-chrome --user-data-dir=$HOME/.config/google-chrome-tor --proxy-server=socks://localhost:9050'
+alias google-chrome-proxy='google-chrome --user-data-dir=$HOME/.config/google-chrome-proxy --proxy-server=socks://localhost:5000'
+alias google-chrome-bank='google-chrome --user-data-dir=$HOME/.config/google-chrome-bank'
+alias google-chrome-video='google-chrome --user-data-dir=$HOME/.config/google-chrome-video'
 alias google-chrome-firefox='google-chrome --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.X.Y.Z Safari/525.13"'
 
 # nicer evince from command line
@@ -19,4 +19,4 @@ alias evince='evince 2>/dev/null'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # keep my bones between reinstalls
-alias hack='hack -d ~/Games/hack'
+alias hack='hack -d $HOME/Games/hack'
