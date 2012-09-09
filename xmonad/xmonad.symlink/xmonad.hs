@@ -4,6 +4,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.ManageHook
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
+import XMonad.Layout.NoBorders
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8:web", "9:mail"]
 
@@ -13,7 +14,9 @@ myManageHooks = composeAll
   , manageDocks
   ]
 
--- TODO: Add binding to lock screen
+myKeys =
+  [ ("M-S-z", spawn "xscreensaver-command -lock") -- lock screen
+  ]
 
 main = do
 
@@ -21,7 +24,7 @@ main = do
 
   xmonad $ defaultConfig {
     workspaces = myWorkspaces
-    , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    , layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
     , manageHook = myManageHooks <+> manageHook defaultConfig
     , borderWidth = 4
     , normalBorderColor = "#004400"
@@ -35,4 +38,4 @@ main = do
       , ppHidden = xmobarColor "#00FF00" ""
       , ppHiddenNoWindows = xmobarColor "white" ""
       }
-    }
+    } `additionalKeysP` myKeys
