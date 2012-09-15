@@ -1,3 +1,4 @@
+*.swp
 xmonad/xmonad.symlink/xmonad.o
 xmonad/xmonad.symlink/xmonad.hi
 xmonad/xmonad.symlink/xmonad.errors

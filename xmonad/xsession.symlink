@@ -12,7 +12,8 @@ xscreensaver -no-splash &
 
 # Auto start email and web
 google-chrome &
-evolution &
+thunderbird &
+pidgin &
 
 # Finally, start xmonad
 xmonad
