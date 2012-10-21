@@ -5,7 +5,7 @@ Config {
     , commands = [
       Run Weather "KVCB" ["-t","<station>: <tempC>C","-L","18","-H","30","--low","lightblue","--normal","green","--high","red"] 36000
       , Run Cpu ["-L","0","-H","50","--low","lightblue","--normal","green","--high","red"] 10
-      , Run Network "eth0" ["-L","0","-H","70","--low","lightblue","--normal","green","--high","red"] 10
+      , Run Network "eth0" ["-L","0","-H","1000","--low","lightblue","--normal","green","--high","red"] 10
       , Run Memory ["-t","Mem: <usedratio>%","-L","0","-H","80","--low","lightblue","--normal","green","--high","red"] 10
       , Run CoreTemp ["-L","30","-H","60","--low","lightblue","--normal","green","--high","red"] 50
       , Run Date "%a %b %_d %l:%M" "date" 10

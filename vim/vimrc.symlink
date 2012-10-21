@@ -2,23 +2,21 @@ set nocompatible
 
 call pathogen#infect()
 
-set mouse=i
-
 set nowrap
-set autoindent
-set smartindent
 set tabstop=2
 set shiftwidth=2
-set foldlevel=2
+set autoindent
+set smartindent
 set expandtab
-
-filetype plugin indent on
+set showmatch
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set nu
+set title
 
 set formatoptions=cro
-
-set showmatch
-set nu
-set incsearch
 
 " size in KB
 set maxmempattern=20000
@@ -29,10 +27,13 @@ colorscheme desert
 set showmode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.pdf,*.aux,*.bbl,*.bcf,*.blg,*.cls
 
-au BufNewFile,BufRead Makefile setlocal noexpandtab
-au BufNewFile,BufRead *.tex,*.txt setlocal wrap linebreak tw=120 fo=tcqw spell spelllang=en_us
 au BufNewFile,BufRead *.thor setlocal ft=ruby
 au BufNewFile,BufRead *.sbt setlocal ft=scala
+
+filetype plugin indent on
+autocmd filetype python set nosmartindent copyindent
+autocmd filetype tex set wrap linebreak tw=100 fo=tcqw spell spelllang=en_us
+autocmd filetype make set noexpandtab
 
 " trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
@@ -41,6 +42,14 @@ nmap <F2> :NERDTreeToggle<CR>
 nnoremap <F9> :!!<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 
+" Need to stop using arrow keys.
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+nnoremap j gj
+nnoremap k gk
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev WQ wq

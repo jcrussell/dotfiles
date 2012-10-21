@@ -44,6 +44,7 @@ main = do
     , normalBorderColor = "#004400"
     , focusedBorderColor = "#00FF00"
     , focusFollowsMouse = False
+    , modMask = mod4Mask
     , logHook = dynamicLogWithPP $ xmobarPP
       { ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor "#00FF00" "" . shorten 100
