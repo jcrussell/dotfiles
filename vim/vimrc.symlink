@@ -32,15 +32,19 @@ au BufNewFile,BufRead *.sbt setlocal ft=scala
 
 filetype plugin indent on
 autocmd filetype python set nosmartindent copyindent
-autocmd filetype tex set wrap linebreak tw=100 fo=tcqw spell spelllang=en_us
+autocmd filetype tex set wrap linebreak spell spelllang=en_us " tw=100 fo=tcqw
 autocmd filetype make set noexpandtab
 
 " trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-nmap <F2> :NERDTreeToggle<CR>
-nnoremap <F9> :!!<CR>
-nnoremap <F10> :set invpaste paste?<CR>
+" Move next sentence to next line
+nmap <F2> f.li<CR><ESC>
+nmap <F5> :!!<CR>
+nmap <F11> :set invpaste paste?<CR>
+nmap <F12> :NERDTreeToggle<CR>
+nmap j gj
+nmap k gk
 
 " Need to stop using arrow keys.
 map <up> <nop>
@@ -48,9 +52,9 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-nnoremap j gj
-nnoremap k gk
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev WQ wq
 cnoreabbrev Wq wq
+
+let &showbreak='>>'
