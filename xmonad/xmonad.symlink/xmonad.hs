@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Actions.GridSelect
+import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
@@ -10,6 +11,7 @@ import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
 import XMonad.Layout.ThreeColumns
 import XMonad.ManageHook
+import XMonad.Prompt
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
 import XMonad.Layout.NoBorders
@@ -30,6 +32,7 @@ myKeys =
   , ("M-z", spawn "xscreensaver-command -activate") -- enable screen saver
   , ("M-u", focusUrgent)
   , ("M-g", goToSelected defaultGSConfig)
+  , ("M-r", renameWorkspace defaultXPConfig)
   ] ++
   [ (otherModMasks ++ "M-" ++ [key], action tag)
     | (tag, key) <- zip myWorkspaces "1234567890"
@@ -63,7 +66,7 @@ main = do
     , focusedBorderColor = "#00FF00"
     , focusFollowsMouse = False
     , modMask = mod4Mask
-    , logHook = dynamicLogWithPP $ xmobarPP
+    , logHook = workspaceNamesPP xmobarPP
       { ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor "#00FF00" "" . shorten 100
       , ppCurrent = xmobarColor "#00FF00" "" . wrap "[" "]"
@@ -71,5 +74,5 @@ main = do
       , ppHidden = xmobarColor "#00FF00" ""
       , ppUrgent = xmobarColor "#FFA500" "" . xmobarStrip
       , ppHiddenNoWindows = xmobarColor "white" ""
-      }
+      } >>= dynamicLogWithPP
     } `additionalKeysP` myKeys
