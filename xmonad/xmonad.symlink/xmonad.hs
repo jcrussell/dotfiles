@@ -18,13 +18,13 @@ import XMonad.Layout.NoBorders
 
 import qualified XMonad.StackSet as W
 
-myWorkspaces = ["1:www", "2", "3", "4", "5", "6", "7", "8:chat", "9:mail", "0:misc"]
+myWorkspaces = ["1:www", "2", "3", "4", "5", "6", "7", "8", "9:chat", "0:mail"]
 
 myManageHooks = composeAll
   [ manageDocks
-  , className =? "Pidgin"           --> doShift "8:chat"
-  , className =? "Thunderbird"      --> doShift "9:mail"
-  , className =? "Evolution"        --> doShift "9:mail"
+  , className =? "Pidgin"           --> doShift "9:chat"
+  , className =? "Thunderbird"      --> doShift "0:mail"
+  , className =? "Evolution"        --> doShift "0:mail"
   ]
 
 myKeys =
@@ -39,7 +39,7 @@ myKeys =
     , (otherModMasks, action) <- [ ("", windows . W.view), ("S-", windows . W.shift)]
   ]
 
-myLayout = onWorkspace "8:chat" pidginLayout $ standardLayout
+myLayout = onWorkspace "9:chat" pidginLayout $ standardLayout
   where
     tall     = Tall nmaster delta ratio
     threecol = ThreeCol nmaster delta ratio
