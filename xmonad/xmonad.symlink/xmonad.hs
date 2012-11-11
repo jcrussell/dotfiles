@@ -1,19 +1,22 @@
 import XMonad
+import XMonad.Actions.GridSelect
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Column
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
+import XMonad.Layout.ThreeColumns
 import XMonad.ManageHook
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
 import XMonad.Layout.NoBorders
 
-import Data.Ratio ((%))
+import qualified XMonad.StackSet as W
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8:chat", "9:mail"]
+myWorkspaces = ["1:www", "2", "3", "4", "5", "6", "7", "8:chat", "9:mail", "0:misc"]
 
 myManageHooks = composeAll
   [ manageDocks
@@ -26,11 +29,26 @@ myKeys =
   [ ("M-S-z", spawn "xscreensaver-command -lock") -- lock screen
   , ("M-z", spawn "xscreensaver-command -activate") -- enable screen saver
   , ("M-u", focusUrgent)
+  , ("M-g", goToSelected defaultGSConfig)
+  ] ++
+  [ (otherModMasks ++ "M-" ++ [key], action tag)
+    | (tag, key) <- zip myWorkspaces "1234567890"
+    , (otherModMasks, action) <- [ ("", windows . W.view), ("S-", windows . W.shift)]
   ]
 
-pidginLayout = avoidStruts $ reflectHoriz $ withIM (1%5) (Title "Buddy List") Grid
+myLayout = onWorkspace "8:chat" pidginLayout $ standardLayout
+  where
+    tall     = Tall nmaster delta ratio
+    threecol = ThreeCol nmaster delta ratio
+    column   = Column decrease
 
-myLayout = onWorkspace "8:chat" pidginLayout
+    nmaster  = 1
+    delta    = 3/100
+    ratio    = 1/2
+    decrease = 1.4
+
+    standardLayout = avoidStruts $ smartBorders $ tall ||| threecol ||| column ||| Full
+    pidginLayout = avoidStruts $ reflectHoriz $ withIM (1/5) (Title "Buddy List") Grid
 
 main = do
 
@@ -38,7 +56,7 @@ main = do
 
   xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
     { workspaces = myWorkspaces
-    , layoutHook = myLayout $ avoidStruts $ smartBorders $ layoutHook defaultConfig
+    , layoutHook = myLayout
     , manageHook = myManageHooks <+> manageHook defaultConfig
     , borderWidth = 4
     , normalBorderColor = "#004400"
