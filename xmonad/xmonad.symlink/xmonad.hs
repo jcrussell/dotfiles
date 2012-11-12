@@ -43,12 +43,12 @@ myLayout = onWorkspace "9:chat" pidginLayout $ standardLayout
   where
     tall     = Tall nmaster delta ratio
     threecol = ThreeCol nmaster delta ratio
-    column   = Column decrease
+    column   = Column height
 
     nmaster  = 1
     delta    = 3/100
     ratio    = 1/2
-    decrease = 1.4
+    height   = 1
 
     standardLayout = avoidStruts $ smartBorders $ tall ||| threecol ||| column ||| Full
     pidginLayout = avoidStruts $ reflectHoriz $ withIM (1/5) (Title "Buddy List") Grid
