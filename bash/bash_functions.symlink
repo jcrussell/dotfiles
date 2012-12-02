@@ -1,18 +1,32 @@
+# grep all files with a specific extension (recursively)
+ext_grep() {
+  ext=$1; shift
+  find . -type f -name "*\.$ext" -print0 | xargs -0 grep --color -n "$@"
+}
+
 # grep all java files (recursively)
-function jgrep()
-{
-  find . -type f -name "*\.java" -print0 | xargs -0 grep --color -n "$@"
+jgrep() {
+  ext_grep "java" $@
+}
+
+# grep all scala files (recursively)
+sgrep() {
+  ext_grep "scala" $@
+}
+
+# grep all python files (recursively)
+pygrep() {
+  ext_grep "py" $@
 }
 
 # grep all c/cc/cpp/h files (recursively)
-function cgrep()
-{
+cgrep() {
   find . -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 grep --color -n "$@"
 }
 
-# grep all files with a specific extension (recursively)
-function ext_grep()
-{
-  ext=$1; shift
-  find . -type f -name "*\.$ext" -print0 | xargs -0 grep --color -n "$@"
+# run dot on every dot in the current directory
+batch_dot() {
+  for file in *dot; do
+    dot -Tps -o $file.ps $file
+  done
 }
