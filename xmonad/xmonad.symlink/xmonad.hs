@@ -33,6 +33,8 @@ myKeys =
   , ("M-u", focusUrgent)
   , ("M-g", goToSelected defaultGSConfig)
   , ("M-r", renameWorkspace defaultXPConfig)
+  , ("M-S-h", swapTo Prev)
+  , ("M-S-l", swapTo Next)
   ] ++
   [ (otherModMasks ++ "M-" ++ [key], action tag)
     | (tag, key) <- zip myWorkspaces "1234567890"
