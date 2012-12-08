@@ -11,6 +11,9 @@ alias google-chrome-bank='google-chrome --user-data-dir=$HOME/.config/google-chr
 alias google-chrome-video='google-chrome --user-data-dir=$HOME/.config/google-chrome-video'
 alias google-chrome-firefox='google-chrome --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.X.Y.Z Safari/525.13"'
 
+# Pretty print json using python
+alias ppjson='python -mjson.tool'
+
 # nicer evince from command line
 alias evince='evince 2>/dev/null'
 
