@@ -46,6 +46,10 @@ nmap <F12> :NERDTreeToggle<CR>
 nmap j gj
 nmap k gk
 
+" Ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 " Need to stop using arrow keys.
 map <up> <nop>
 map <down> <nop>
