@@ -2,14 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-TEXDIR=$HOME/.texlive/2011
 ANDROID_SDK=$HOME/.android/android-sdk-linux
 
-PATH=$PATH:$HOME/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$TEXDIR/bin/x86_64-linux
-MANPATH=$TEXDIR/texmf/doc/man:$MANPATH
-INFOPATH=$TEXDIR/texmf/doc/info:$INFOPATH
+PATH=$PATH:$HOME/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
 
-unset TEXDIR ANDROID_SDK
+unset ANDROID_SDK
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -42,11 +39,8 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-if [ -f /usr/share/doc/cdargs/examples/cdargs-bash.sh ]; then
-  . /usr/share/doc/cdargs/examples/cdargs-bash.sh
-else
-  echo "You should install cdargs"
-fi
+# cdargs functions for faster directory navigation
+. ~/.dotfiles/cdargs/cdargs-bash.sh
 
 # enable bash completion in interactive shells
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
