@@ -1,5 +1,3 @@
-# .xsession
-
 # Startup gnome keyring for ssh keys
 eval `gnome-keyring-daemon`
 export SSH_AUTH_SOCK
@@ -14,6 +12,10 @@ xscreensaver -no-splash &
 google-chrome &
 thunderbird &
 pidgin &
+
+if [ -f $HOME/.fehbg ]; then
+  sh $HOME/.fehbg &
+fi
 
 # Finally, start xmonad
 exec xmonad
