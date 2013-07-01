@@ -16,4 +16,4 @@ thunderbird &
 pidgin &
 
 # Finally, start xmonad
-xmonad
+exec xmonad

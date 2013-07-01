@@ -64,6 +64,7 @@ main = do
     , layoutHook = myLayout
     , manageHook = myManageHooks <+> manageHook defaultConfig
     , borderWidth = 2
+    , terminal = "xterm"
     , normalBorderColor = "#004400"
     , focusedBorderColor = "#00FF00"
     , focusFollowsMouse = False
