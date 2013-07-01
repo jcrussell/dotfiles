@@ -31,9 +31,9 @@ au BufNewFile,BufRead *.thor setlocal ft=ruby
 au BufNewFile,BufRead *.sbt setlocal ft=scala
 
 filetype plugin indent on
-autocmd filetype python set nosmartindent copyindent
-autocmd filetype tex set wrap linebreak spell spelllang=en_us " tw=100 fo=tcqw
-autocmd filetype make set noexpandtab
+autocmd Filetype python set nosmartindent copyindent
+autocmd Filetype tex set wrap linebreak spell spelllang=en_us " tw=100 fo=tcqw
+autocmd Filetype make set noexpandtab
 
 " trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
@@ -49,6 +49,7 @@ nmap k gk
 " Ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = '\v[\/](out|tmp|\.(git|hg|svn))$'
 
 " Need to stop using arrow keys.
 map <up> <nop>
