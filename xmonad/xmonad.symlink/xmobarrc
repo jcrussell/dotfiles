@@ -1,11 +1,12 @@
 Config {
     bgColor = "#000000"
     , fgColor = "grey"
+    , font = "xft:Gohufont:size=11:antialias=true"
     , position = Top
     , commands = [
       Run Weather "KVCB" ["-t","<station>: <tempC>C","-L","18","-H","30","--low","lightblue","--normal","green","--high","red"] 36000
       , Run Cpu ["-L","0","-H","50","--low","lightblue","--normal","green","--high","red"] 10
-      , Run Network "eth0" ["-L","0","-H","1000","--low","lightblue","--normal","green","--high","red"] 10
+      , Run Network "p20p1" ["-L","0","-H","1000","--low","lightblue","--normal","green","--high","red"] 10
       , Run Memory ["-t","Mem: <usedratio>%","-L","0","-H","80","--low","lightblue","--normal","green","--high","red"] 10
       , Run CoreTemp ["-L","30","-H","60","--low","lightblue","--normal","green","--high","red"] 50
       , Run Date "%a %b %_d %l:%M" "date" 10
@@ -13,5 +14,5 @@ Config {
       ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = " %StdinReader%}{ %cpu% | %coretemp% | %memory% | %eth0% | <fc=#ee9a00>%date%</fc> | %KVCB% "
+    , template = " %StdinReader%}{ %cpu% | %coretemp% | %memory% | %p20p1% | <fc=#ee9a00>%date%</fc> | %KVCB% "
 }

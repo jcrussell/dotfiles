@@ -35,6 +35,8 @@ myKeys =
   , ("M-r", renameWorkspace defaultXPConfig)
   , ("M-S-h", swapTo Prev)
   , ("M-S-l", swapTo Next)
+  , ("<XF86AudioLowerVolume>", spawn "amixer -c 0 set Master 4dB-")
+  , ("<XF86AudioRaiseVolume>", spawn "amixer -c 0 set Master 4dB+")
   ] ++
   [ (otherModMasks ++ "M-" ++ [key], action tag)
     | (tag, key) <- zip myWorkspaces "1234567890"
