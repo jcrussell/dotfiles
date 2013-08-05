@@ -63,3 +63,6 @@ cnoreabbrev WQ wq
 cnoreabbrev Wq wq
 
 let &showbreak='>>'
+
+" Get out of insert mode without leaving the home row
+inoremap jj <ESC>
