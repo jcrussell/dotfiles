@@ -35,6 +35,9 @@ autocmd Filetype python set nosmartindent copyindent
 autocmd Filetype tex set wrap linebreak spell spelllang=en_us " tw=100 fo=tcqw
 autocmd Filetype make set noexpandtab
 
+" Set default .tex to latex
+let g:tex_flavor = "latex"
+
 " trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 

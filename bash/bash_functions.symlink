@@ -24,6 +24,11 @@ cgrep() {
   find . -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 grep --color -n "$@"
 }
 
+# grep all text files (recursively)
+texgrep() {
+  ext_grep "tex" $@
+}
+
 # run dot on every dot in the current directory
 batch_dot() {
   for file in *dot; do
