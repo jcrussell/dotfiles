@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
@@ -33,6 +34,7 @@ myKeys =
   , ("M-u", focusUrgent)
   , ("M-g", goToSelected defaultGSConfig)
   , ("M-r", renameWorkspace defaultXPConfig)
+  , ("M-s", swapNextScreen)
   , ("M-S-h", swapTo Prev)
   , ("M-S-l", swapTo Next)
   , ("<XF86AudioLowerVolume>", spawn "amixer -c 0 set Master 4dB-")
