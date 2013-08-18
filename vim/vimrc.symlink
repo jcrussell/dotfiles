@@ -32,7 +32,7 @@ au BufNewFile,BufRead *.sbt setlocal ft=scala
 
 filetype plugin indent on
 autocmd Filetype python set nosmartindent copyindent
-autocmd Filetype tex set wrap linebreak spell spelllang=en_us " tw=100 fo=tcqw
+autocmd Filetype tex set wrap linebreak spell spelllang=en " tw=100 fo=tcqw
 autocmd Filetype make set noexpandtab
 
 " Set default .tex to latex
@@ -45,7 +45,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 nmap <F2> f.li<CR><ESC>
 nmap <F5> :!!<CR>
 nmap <F11> :set invpaste paste?<CR>
-nmap <F12> :NERDTreeToggle<CR>
 nmap j gj
 nmap k gk
 
@@ -69,3 +68,4 @@ let &showbreak='>>'
 
 " Get out of insert mode without leaving the home row
 inoremap jj <ESC>
+inoremap <ESC> <nop>
