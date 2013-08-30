@@ -38,34 +38,44 @@ autocmd Filetype make set noexpandtab
 " Set default .tex to latex
 let g:tex_flavor = "latex"
 
-" trim whitespace
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Move next sentence to next line
-nmap <F2> f.li<CR><ESC>
-nmap <F5> :!!<CR>
-nmap <F11> :set invpaste paste?<CR>
-nmap j gj
-nmap k gk
-
 " Ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/](out|tmp|\.(git|hg|svn))$'
 
-" Need to stop using arrow keys.
+" Trim whitespace when file is written
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Show when lines have wrapped
+let &showbreak='>>'
+
+" Move next sentence to next line
+nmap <F2> f.li<CR><ESC>
+
+" Rerun the last command
+nmap <F5> :!!<CR>
+
+" Toggle paste mode
+nmap <F11> :set invpaste paste?<CR>
+
+" Make navigating long lines a bit nicer
+nmap j gj
+nmap k gk
+
+" More accessible make
+nmap mm :make<CR>
+
+" Disable the arrow keys.
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
+" Get out of insert mode without leaving the home row
+inoremap jj <ESC>
+
+" Aliases for ex commands
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev WQ wq
 cnoreabbrev Wq wq
-
-let &showbreak='>>'
-
-" Get out of insert mode without leaving the home row
-inoremap jj <ESC>
-inoremap <ESC> <nop>
