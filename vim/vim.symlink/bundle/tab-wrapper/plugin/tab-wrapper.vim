@@ -3,8 +3,8 @@ if exists('g:loaded_tab_wrapper') || &cp
 endif
 let g:loaded_tab_wrapper = 1
 
-inoremap <tab> <c-r>=InsertTabWrapper(0)<cr>
-inoremap <S-tab> <c-r>=InsertTabWrapper(1)<cr>
+inoremap <tab> <c-r>=InsertTabWrapper(1)<cr>
+inoremap <S-tab> <c-r>=InsertTabWrapper(0)<cr>
 
 " InsertTabWrapper() {{{
 " Tab completion of tags/keywords if not at the beginning of the line.
