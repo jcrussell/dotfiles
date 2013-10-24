@@ -16,7 +16,11 @@ set incsearch
 set nu
 set title
 
-set formatoptions=cro
+" disable folding
+set nofoldenable
+
+" Default for VIM is tcq
+set formatoptions+=roqn
 
 " size in KB
 set maxmempattern=20000
@@ -79,3 +83,11 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev WQ wq
 cnoreabbrev Wq wq
+
+" vim-notes plugin
+let g:notes_directories = ['~/.notes']
+let g:notes_smart_quotes = 0
+let g:notes_unicode_enabled = 0
+
+highlight link notesEmailAddr Directory
+highlight link notesRealURL Special
