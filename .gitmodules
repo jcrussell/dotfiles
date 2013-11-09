@@ -16,3 +16,6 @@
 [submodule "vim/vim.symlink/bundle/vim-misc"]
 	path = vim/vim.symlink/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
+[submodule "vim/vim.symlink/bundle/vim-bro"]
+	path = vim/vim.symlink/bundle/vim-bro
+	url = git://github.com/mephux/bro.vim.git
