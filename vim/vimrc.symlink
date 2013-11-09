@@ -89,5 +89,10 @@ let g:notes_directories = ['~/.notes']
 let g:notes_smart_quotes = 0
 let g:notes_unicode_enabled = 0
 
+let g:notes_indents = 1
+let g:notes_indents_right = ">>"
+let g:notes_indents_left = "<<"
+
 highlight link notesEmailAddr Directory
 highlight link notesRealURL Special
+highlight link notesShortHeading None
