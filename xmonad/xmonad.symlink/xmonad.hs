@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
 import XMonad.Actions.WorkspaceNames
+import XMonad.Actions.NoBorders
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
@@ -14,6 +15,7 @@ import XMonad.Layout.ThreeColumns
 import XMonad.ManageHook
 import XMonad.Prompt
 import XMonad.Util.EZConfig
+import XMonad.Util.Replace
 import XMonad.Util.Run
 import XMonad.Layout.NoBorders
 
@@ -26,6 +28,7 @@ myManageHooks = composeAll
   , className =? "Pidgin"           --> doShift "9:chat"
   , className =? "Thunderbird"      --> doShift "0:mail"
   , className =? "Evolution"        --> doShift "0:mail"
+  , manageHook defaultConfig
   ]
 
 myKeys =
@@ -37,6 +40,8 @@ myKeys =
   , ("M-s", swapNextScreen)
   , ("M-S-h", swapTo Prev)
   , ("M-S-l", swapTo Next)
+  , ("M-f", sendMessage ToggleStruts)
+  , ("M-S-f", withFocused toggleBorder)
   , ("<XF86AudioLowerVolume>", spawn "amixer -c 0 set Master 4dB-")
   , ("<XF86AudioRaiseVolume>", spawn "amixer -c 0 set Master 4dB+")
   ] ++
@@ -59,27 +64,30 @@ myLayout = onWorkspace "9:chat" pidginLayout $ standardLayout
     standardLayout = avoidStruts $ smartBorders $ tall ||| threecol ||| column ||| Full
     pidginLayout = avoidStruts $ reflectHoriz $ withIM (1/5) (Title "Buddy List") Grid
 
-main = do
+myLogHook xmobarPipe = workspaceNamesPP xmobarPP
+  { ppOutput = hPutStrLn xmobarPipe
+  , ppTitle = xmobarColor "#00FF00" "" . shorten 100
+  , ppCurrent = xmobarColor "#00FF00" "" . wrap "[" "]"
+  , ppVisible = xmobarColor "#00FF00" "" . wrap "(" ")"
+  , ppHidden = xmobarColor "#00FF00" ""
+  , ppUrgent = xmobarColor "#FFA500" "" . xmobarStrip
+  , ppHiddenNoWindows = xmobarColor "white" ""
+  } >>= dynamicLogWithPP
 
-  xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"
+main = do
+  replace
+
+  xmobarPipe <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"
 
   xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
     { workspaces = myWorkspaces
     , layoutHook = myLayout
-    , manageHook = myManageHooks <+> manageHook defaultConfig
+    , manageHook = myManageHooks
     , borderWidth = 2
     , terminal = "xterm"
     , normalBorderColor = "#004400"
     , focusedBorderColor = "#00FF00"
     , focusFollowsMouse = False
     , modMask = mod4Mask
-    , logHook = workspaceNamesPP xmobarPP
-      { ppOutput = hPutStrLn xmproc
-      , ppTitle = xmobarColor "#00FF00" "" . shorten 100
-      , ppCurrent = xmobarColor "#00FF00" "" . wrap "[" "]"
-      , ppVisible = xmobarColor "#00FF00" "" . wrap "(" ")"
-      , ppHidden = xmobarColor "#00FF00" ""
-      , ppUrgent = xmobarColor "#FFA500" "" . xmobarStrip
-      , ppHiddenNoWindows = xmobarColor "white" ""
-      } >>= dynamicLogWithPP
+    , logHook = myLogHook xmobarPipe
     } `additionalKeysP` myKeys
