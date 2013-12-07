@@ -14,10 +14,14 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.ThreeColumns
 import XMonad.ManageHook
 import XMonad.Prompt
+import XMonad.Util.Dmenu
 import XMonad.Util.EZConfig
 import XMonad.Util.Replace
 import XMonad.Util.Run
 import XMonad.Layout.NoBorders
+
+import Control.Monad
+import System.Exit
 
 import qualified XMonad.StackSet as W
 
@@ -31,16 +35,22 @@ myManageHooks = composeAll
   , manageHook defaultConfig
   ]
 
+-- Quit after confirmation
+myQuit = do
+  answer <- dmenu ["cancel", "quit"]
+  when (answer == "quit") (io exitSuccess)
+
 myKeys =
   [ ("M-S-z", spawn "xscreensaver-command -lock") -- lock screen
-  , ("M-z", spawn "xscreensaver-command -activate") -- enable screen saver
-  , ("M-u", focusUrgent)
-  , ("M-g", goToSelected defaultGSConfig)
-  , ("M-r", renameWorkspace defaultXPConfig)
-  , ("M-s", swapNextScreen)
+  , ("M-z",   spawn "xscreensaver-command -activate") -- enable screen saver
+  , ("M-S-q", myQuit)
+  , ("M-u",   focusUrgent)
+  , ("M-g",   goToSelected defaultGSConfig)
+  , ("M-r",   renameWorkspace defaultXPConfig)
+  , ("M-s",   swapNextScreen)
   , ("M-S-h", swapTo Prev)
   , ("M-S-l", swapTo Next)
-  , ("M-f", sendMessage ToggleStruts)
+  , ("M-f",   sendMessage ToggleStruts)
   , ("M-S-f", withFocused toggleBorder)
   , ("<XF86AudioLowerVolume>", spawn "amixer -c 0 set Master 4dB-")
   , ("<XF86AudioRaiseVolume>", spawn "amixer -c 0 set Master 4dB+")
