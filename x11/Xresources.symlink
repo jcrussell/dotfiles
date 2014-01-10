@@ -8,8 +8,7 @@ XTerm*scrollBar: false
 XTerm*faceName: DejaVu Sans Mono Book
 XTerm*faceSize: 11
 
-! After 5 minutes of inactivity, activate the screensaver
+! Activate after 5 minutes of inactivity, lock after 30 more seconds.
 xscreensaver.timeout: 5
-
-! After an additional 1 minute of inactivity, lock the screen
-xscreensaver.lockTimeout: 1
+xscreensaver.lockTimeout: 30
+xscreensaver.mode: blank

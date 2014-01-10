@@ -1,21 +1,25 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# Grab system-wide settings
+[ -f /etc/bashrc ] && source /etc/bashrc
 
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+[ -d $HOME/bin ] && PATH=$PATH:$HOME/bin
 
+# If the Android SDK is installed, add it to PATH
 ANDROID_SDK=$HOME/.android/android-sdk-linux
 
-PATH=$PATH:$HOME/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
+[ -d $ANDROID_SDK ] && PATH=$PATH:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
 
 unset ANDROID_SDK
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-set -o vi
+# If running in a virtual console, set a timeout
+if [ ! -z $(tty | grep tty) ]; then
+  echo "Setting a timeout to close console after 10 mins of inactivity"
+  TMOUT=600
+fi
+
+#set -o vi
 EDITOR=vim
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -33,75 +37,23 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Bash functions
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
+# Alias and function definitions.
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_functions ] && source ~/.bash_functions
 
 # cdargs functions for faster directory navigation
 . ~/.dotfiles/cdargs/cdargs-bash.sh
 
-use_color=false
-
-# Set colorful PS1 only on colorful terminals.
-# dircolors --print-database uses its own built-in database
-# instead of using /etc/DIR_COLORS.  Try to use the external file
-# first to take advantage of user additions.  Use internal bash
-# globbing instead of external grep binary.
-safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
-match_lhs=""
-[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
-[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
-[[ -z ${match_lhs}    ]] \
-        && type -P dircolors >/dev/null \
-        && match_lhs=$(dircolors --print-database)
-[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
-
-if ${use_color} ; then
-        # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-        if type -P dircolors >/dev/null ; then
-                if [[ -f ~/.dir_colors ]] ; then
-                        eval $(dircolors -b ~/.dir_colors)
-                elif [[ -f /etc/DIR_COLORS ]] ; then
-                        eval $(dircolors -b /etc/DIR_COLORS)
-                fi
-        fi
-
-        if [[ ${EUID} == 0 ]] ; then
-                PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-        else
-                PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
-        fi
-
-        alias ls='ls --color=auto'
-        alias grep='grep --colour=auto'
-else
-        if [[ ${EUID} == 0 ]] ; then
-                # show root@ when we don't have colors
-                PS1='\u@\h \W \$ '
-        else
-                PS1='\u@\h \w \$ '
-        fi
-fi
-
-# Try to keep environment pollution down, EPA loves us.
-unset use_color safe_term match_lhs
-
 # Update the title before each prompt
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-    ;;
+  PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+  ;;
 *)
-    ;;
+  ;;
 esac
 
 # enable bash completion in interactive shells
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi

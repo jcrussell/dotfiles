@@ -1,11 +1,12 @@
-
-# some more ls aliases
-alias ls='ls --color'
+# Aliases for ls
+alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 
+# Use color for grep if available
+alias grep='grep --color=auto'
+
 # Different browser sessions
-alias google-chrome-tor='google-chrome --user-data-dir=$HOME/.config/google-chrome-tor --proxy-server=socks://localhost:9050'
 alias google-chrome-proxy='google-chrome --user-data-dir=$HOME/.config/google-chrome-proxy --proxy-server=socks://localhost:5000'
 alias google-chrome-bank='google-chrome --user-data-dir=$HOME/.config/google-chrome-bank'
 alias google-chrome-video='google-chrome --user-data-dir=$HOME/.config/google-chrome-video'
@@ -16,10 +17,6 @@ alias ppjson='python -mjson.tool'
 
 # nicer evince from command line
 alias evince='evince 2>/dev/null'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # keep my bones between reinstalls
 alias hack='hack -d $HOME/Games/hack'

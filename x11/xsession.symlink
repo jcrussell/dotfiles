@@ -6,15 +6,22 @@ export GNOME_KEYRING_PID
 # For applications that rely on gtk
 gnome-settings-daemon &
 
+# Start screensaver daemon
 xscreensaver -no-splash &
 
-# Auto start email and web
+# Auto start programs
 google-chrome &
 thunderbird &
 pidgin &
 
+# Setup the wallpaper
 if [ -f $HOME/.fehbg ]; then
-  sh $HOME/.fehbg &
+  sh $HOME/.fehbg.sh &
+fi
+
+# Setup the default monitor layout
+if [ -f $HOME/.screenlayout/default.sh ]; then
+  $HOME/.screenlayout/default.sh
 fi
 
 # Finally, start xmonad

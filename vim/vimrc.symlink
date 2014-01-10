@@ -31,8 +31,10 @@ colorscheme desert
 set showmode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.pdf,*.aux,*.bbl,*.bcf,*.blg,*.cls
 
-au BufNewFile,BufRead *.thor setlocal ft=ruby
+" Alter recognition of file extensions
 au BufNewFile,BufRead *.sbt setlocal ft=scala
+au BufNewFile,BufRead *.gnu setlocal ft=gnuplot
+au BufNewFile,BufRead *.md setlocal ft=notes
 
 filetype plugin indent on
 autocmd Filetype python set nosmartindent copyindent
