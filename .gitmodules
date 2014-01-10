@@ -19,3 +19,6 @@
 [submodule "vim/vim.symlink/bundle/vim-bro"]
 	path = vim/vim.symlink/bundle/vim-bro
 	url = git://github.com/mephux/bro.vim.git
+[submodule "vim/vim.symlink/bundle/vim-colors-solarized"]
+	path = vim/vim.symlink/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
