@@ -6,7 +6,7 @@ path_add() {
 }
 
 path_add $HOME/bin
-path_add /usr/local/go
+path_add /usr/local/go/bin
 
 # If the Android SDK is installed, add it to PATH
 ANDROID_SDK=$HOME/.android/android-sdk-linux
