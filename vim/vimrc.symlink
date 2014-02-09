@@ -40,6 +40,7 @@ filetype plugin indent on
 autocmd Filetype python set nosmartindent copyindent
 autocmd Filetype tex set wrap linebreak spell spelllang=en " tw=100 fo=tcqw
 autocmd Filetype make set noexpandtab
+autocmd Filetype go set noexpandtab
 
 " Set default .tex to latex
 let g:tex_flavor = "latex"
@@ -51,6 +52,9 @@ let g:ctrlp_custom_ignore = '\v[\/](out|tmp|\.(git|hg|svn))$'
 
 " Trim whitespace when file is written
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Let go fmt do the work for *.go
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Show when lines have wrapped
 let &showbreak='>>'

@@ -1,14 +1,22 @@
 # Grab system-wide settings
 [ -f /etc/bashrc ] && source /etc/bashrc
 
-[ -d $HOME/bin ] && PATH=$PATH:$HOME/bin
+path_add() {
+  [ -d $1 ] && PATH=$PATH:$1
+}
+
+path_add $HOME/bin
+path_add /usr/local/go
 
 # If the Android SDK is installed, add it to PATH
 ANDROID_SDK=$HOME/.android/android-sdk-linux
 
-[ -d $ANDROID_SDK ] && PATH=$PATH:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
+path_add $ANDROID_SDK/platform-tools
+path_add $ANDROID_SDK/tools
 
 unset ANDROID_SDK
+
+unset path_add
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

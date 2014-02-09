@@ -15,14 +15,13 @@ thunderbird &
 pidgin &
 
 # Setup the wallpaper
-if [ -f $HOME/.fehbg ]; then
-  sh $HOME/.fehbg.sh &
-fi
+[ -f $HOME/.fehbg ] && sh $HOME/.fehbg &
 
 # Setup the default monitor layout
-if [ -f $HOME/.screenlayout/default.sh ]; then
-  $HOME/.screenlayout/default.sh
-fi
+[ -f $HOME/.screenlayout/default.sh ] && $HOME/.screenlayout/default.sh
+
+# Load Xresources
+[ -f $HOME/.Xresources ] && xrdb -load $HOME/.Xresources
 
 # Finally, start xmonad
 exec xmonad
