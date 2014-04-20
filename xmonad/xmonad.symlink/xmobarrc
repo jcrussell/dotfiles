@@ -2,7 +2,7 @@ Config {
     bgColor = "#000000"
     , fgColor = "grey"
     , font = "xft:Gohufont:size=11:antialias=true"
-    , position = Top
+    , position = Bottom
     , commands = [
       Run Cpu ["-L","0","-H","50","--low","lightblue","--normal","green","--high","red"] 10
       , Run Network "eth0" ["-L","0","-H","1000","--low","lightblue","--normal","green","--high","red"] 10

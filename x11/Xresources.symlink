@@ -9,8 +9,12 @@ XTerm*faceSize: 11
 ! Activate after 5 minutes of inactivity, lock after 1 minute.
 xscreensaver.timeout: 5
 xscreensaver.lockTimeout: 1
-xscreensaver.mode: blank
 
+! Enter power saving mode when screensaver is active
+xscreensaver.mode: blank
+xscreensaver.dpmsEnabled: True
+xscreensaver.dpmsQuickOff: True
+xscreensaver.fade: False
 
 ! Solarized color scheme for the X Window System
 !

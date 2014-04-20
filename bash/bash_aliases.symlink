@@ -17,6 +17,3 @@ alias ppjson='python -mjson.tool'
 
 # nicer evince from command line
 alias evince='evince 2>/dev/null'
-
-# keep my bones between reinstalls
-alias hack='hack -d $HOME/Games/hack'
