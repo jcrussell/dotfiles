@@ -54,7 +54,7 @@ let g:ctrlp_custom_ignore = '\v[\/](out|tmp|\.(git|hg|svn))$'
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Let go fmt do the work for *.go
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Show when lines have wrapped
 let &showbreak='>>'
