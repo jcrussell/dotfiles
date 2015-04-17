@@ -60,26 +60,29 @@ autocmd BufWritePre * :%s/\s\+$//e
 let &showbreak='>>'
 
 " Move next sentence to next line
-nmap <F2> f.li<CR><ESC>
+nnoremap <F2> f.li<CR><ESC>
 
 " Rerun the last command
-nmap <F5> :!!<CR>
+nnoremap <F5> :!!<CR>
 
 " Toggle paste mode
-nmap <F11> :set invpaste paste?<CR>
+nnoremap <F11> :set invpaste paste?<CR>
+
+" Fix syntax highlighting when broken
+nnoremap <F12> :syntax sync fromstart<CR>
 
 " Make navigating long lines a bit nicer
-nmap j gj
-nmap k gk
+nnoremap j gj
+nnoremap k gk
 
 " More accessible make
-nmap mm :make<CR>
+nnoremap mm :make<CR>
 
 " Disable the arrow keys.
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " Get out of insert mode without leaving the home row
 inoremap jj <ESC>
