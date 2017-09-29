@@ -4,7 +4,7 @@ XTerm*saveLines: 4096
 XTerm*scrollBar: false
 XTerm*faceName: DejaVu Sans Mono Book
 XTerm*faceSize: 11
-
+XTerm*bellIsUrgent:  true
 
 ! Activate after 5 minutes of inactivity, lock after 1 minute.
 xscreensaver.timeout: 5

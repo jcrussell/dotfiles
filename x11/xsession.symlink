@@ -20,4 +20,4 @@ google-chrome &
 $HOME/.dotfiles/bin/watch_xscreensaver.sh &
 
 # Finally, start xmonad
-exec xmonad
+dbus-launch --sh-syntax --exit-with-session xmonad
