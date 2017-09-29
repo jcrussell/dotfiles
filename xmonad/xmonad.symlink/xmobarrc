@@ -18,5 +18,5 @@ Config {
       ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = " %StdinReader%}{ %cpu% | %coretemp% | %memory% | %enp6s0% | <fc=#ee9a00>%date%</fc> | %KVCB%"
+    , template = " %StdinReader%}{ %cpu% | %coretemp% | %memory% | %enp6s0% | <fc=#ee9a00>%date%</fc> | %KLVK%"
 }
