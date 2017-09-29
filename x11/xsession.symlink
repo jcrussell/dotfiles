@@ -3,16 +3,11 @@ eval `gnome-keyring-daemon`
 export SSH_AUTH_SOCK
 export GNOME_KEYRING_PID
 
-# For applications that rely on gtk
-gnome-settings-daemon &
-
 # Start screensaver daemon
 xscreensaver -no-splash &
 
-# Auto start programs
-google-chrome &
-thunderbird &
-pidgin &
+# Load Xresources
+[ -f $HOME/.Xresources ] && xrdb -load $HOME/.Xresources
 
 # Setup the wallpaper
 [ -f $HOME/.fehbg ] && sh $HOME/.fehbg &
@@ -20,8 +15,9 @@ pidgin &
 # Setup the default monitor layout
 [ -f $HOME/.screenlayout/default.sh ] && $HOME/.screenlayout/default.sh
 
-# Load Xresources
-[ -f $HOME/.Xresources ] && xrdb -load $HOME/.Xresources
+# Auto start programs
+google-chrome &
+$HOME/.dotfiles/bin/watch_xscreensaver.sh &
 
 # Finally, start xmonad
 exec xmonad
