@@ -97,5 +97,5 @@ main = do
     , focusFollowsMouse = False
     , modMask = mod4Mask
     , logHook = myLogHook xmobarPipe
-    , startupHook = setWMName "LD3D"
+    , startupHook = setWMName "LG3D"
     } `additionalKeysP` myKeys
