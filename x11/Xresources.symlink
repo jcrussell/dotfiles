@@ -1,3 +1,4 @@
+XTerm*bellIsUrgent: true
 XTerm*termName: xterm-256color
 XTerm*locale: true
 XTerm*saveLines: 4096
@@ -9,6 +10,7 @@ XTerm*bellIsUrgent:  true
 ! Activate after 5 minutes of inactivity, lock after 1 minute.
 xscreensaver.timeout: 5
 xscreensaver.lockTimeout: 1
+xscreensaver.lock: True
 
 ! Enter power saving mode when screensaver is active
 xscreensaver.mode: blank
