@@ -1,12 +1,13 @@
+" Automatically set in Vim 8 if .vimrc is present, but kept for clarity
 set nocompatible
 
-call pathogen#infect()
+" Allow backspace to delete indent, line breaks, and start of insert
+set backspace=indent,eol,start
 
 set nowrap
 set tabstop=4
 set shiftwidth=4
 set autoindent
-set smartindent
 set expandtab
 set showmatch
 set ignorecase
@@ -15,7 +16,7 @@ set hlsearch
 set incsearch
 set nu
 set title
-set nojs
+set nojoinspaces
 
 " disable folding
 set nofoldenable
@@ -29,19 +30,23 @@ set maxmempattern=20000
 syntax on
 colorscheme desert
 
+" Enable filetype detection and loading of language-specific indent files
+filetype plugin indent on
+
 set showmode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.pdf,*.aux,*.bbl,*.bcf,*.blg,*.cls
 
-" Alter recognition of file extensions
-au BufNewFile,BufRead *.sbt setlocal ft=scala
-au BufNewFile,BufRead *.gnu setlocal ft=gnuplot
-au BufNewFile,BufRead *.md setlocal ft=notes
+augroup autocmd_config
+    " Clears the group so they don't stack up
+    autocmd!
+    autocmd Filetype python set nosmartindent copyindent
+    autocmd Filetype tex set wrap linebreak spell spelllang=en
+    autocmd Filetype make set noexpandtab
+    autocmd Filetype go set noexpandtab
 
-filetype plugin indent on
-autocmd Filetype python set nosmartindent copyindent
-autocmd Filetype tex set wrap linebreak spell spelllang=en " tw=100 fo=tcqw
-autocmd Filetype make set noexpandtab
-autocmd Filetype go set noexpandtab
+    " Trim whitespace when file is written
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
 
 " Set default .tex to latex
 let g:tex_flavor = "latex"
@@ -51,20 +56,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/](out|tmp|\.(git|hg|svn))$'
 
-" Trim whitespace when file is written
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Let go fmt do the work for *.go
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 " Show when lines have wrapped
 let &showbreak='>>'
-
-" Move next sentence to next line
-nnoremap <F2> f.li<CR><ESC>
-
-" Rerun the last command
-nnoremap <F5> :!!<CR>
 
 " Toggle paste mode
 nnoremap <F11> :set invpaste paste?<CR>
@@ -93,16 +86,3 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev WQ wq
 cnoreabbrev Wq wq
-
-" vim-notes plugin
-let g:notes_directories = ['~/.notes']
-let g:notes_smart_quotes = 0
-let g:notes_unicode_enabled = 0
-
-let g:notes_indents = 1
-let g:notes_indents_right = ">>"
-let g:notes_indents_left = "<<"
-
-highlight link notesEmailAddr Directory
-highlight link notesRealURL Special
-highlight link notesShortHeading None
